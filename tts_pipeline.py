@@ -271,6 +271,15 @@ def layer_3_prosody_pronunciation(text: str, locale: str = "pt_BR") -> str:
     if not locale.startswith("pt"):
         return text
 
+    # Títulos e abreviações comuns
+    text = re.sub(r"\bDr\.\s*", "Doutor ", text)
+    text = re.sub(r"\bDr\b", "Doutor", text)
+    text = re.sub(r"\bDra\.\s*", "Doutora ", text)
+    text = re.sub(r"\bDra\b", "Doutora", text)
+    text = re.sub(r"\bSr\.\s*", "Senhor ", text)
+    text = re.sub(r"\bSra\.\s*", "Senhora ", text)
+    text = re.sub(r"\bProf\.\s*", "Professor ", text)
+
     text = text.replace("receitadavovo.com.br",
                         "receita da vovó ponto com ponto bê érre")
     text = re.sub(r"\b[Bb]ase64\b", "base meia quatro", text)
